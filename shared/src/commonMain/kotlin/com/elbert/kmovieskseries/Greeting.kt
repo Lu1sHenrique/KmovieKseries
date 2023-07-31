@@ -1,6 +1,6 @@
 package com.elbert.kmovieskseries
 
-class   Greeting {
+class Greeting {
     private val platform: Platform = getPlatform()
 
     fun greet(): String {
