@@ -35,10 +35,7 @@ fun SearchView(
     val context = LocalContext.current
 
     Card(
-        modifier = Modifier
-            .width(343.dp)
-            .height(50.dp)
-            .padding(8.dp),
+        modifier = modifier,
         elevation = 4.dp,
         backgroundColor = MaterialTheme.colors.surface
     ) {
