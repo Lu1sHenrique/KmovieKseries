@@ -1,11 +1,11 @@
-package com.elbert.kmovieskseries.android
+package com.elbert.kmovieskseries.android.lista
 
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
-
+import com.elbert.kmovieskseries.android.MyApplicationTheme
 @Composable
-fun GreetingView(text: String) {
+fun ListaMediaView(text: String) {
     Text(text = text)
 }
 
@@ -13,6 +13,6 @@ fun GreetingView(text: String) {
 @Composable
 fun DefaultPreview() {
     MyApplicationTheme {
-        GreetingView("Hello, Android!")
+        ListaMediaView("Hello, Android!")
     }
 }
