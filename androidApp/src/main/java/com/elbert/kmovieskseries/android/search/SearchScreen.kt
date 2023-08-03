@@ -18,10 +18,8 @@ fun SearchScreen() {
     var searchQuery by remember { mutableStateOf("") }
     SearchView(
         modifier = Modifier
-            .width(343.dp)
-            .height(50.dp)
             .padding(8.dp)
-            .clip(RoundedCornerShape(16.dp)),
+            .clip(RoundedCornerShape(50.dp)),
         onSearch = { query -> searchQuery = query }
     )
 }
