@@ -1,5 +1,6 @@
 package com.elbert.kmovieskseries.android.lista
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -13,6 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.navigation.NavHostController
 import com.elbert.kmovieskseries.android.search.SearchScreen
+import com.elbert.kmovieskseries.presentation.LightPinkHex
 
 @Composable
 fun ListaMediaView(navController: NavHostController) {
@@ -36,6 +38,9 @@ fun ListaMediaView(navController: NavHostController) {
             modifier = Modifier
                 .fillMaxSize()
                 .padding(padding)
+                .background(
+                    Color(LightPinkHex)
+                )
         ) {
             SearchScreen()
         }
