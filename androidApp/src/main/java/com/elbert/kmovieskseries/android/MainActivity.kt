@@ -6,7 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.elbert.kmovieskseries.android.lista.ListaMediaView
+import com.elbert.kmovieskseries.android.view.ListaMediaView
 
 
 class MainActivity : ComponentActivity() {

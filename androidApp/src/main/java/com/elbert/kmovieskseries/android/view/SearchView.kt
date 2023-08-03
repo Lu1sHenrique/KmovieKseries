@@ -1,4 +1,4 @@
-package com.elbert.kmovieskseries.android.search
+package com.elbert.kmovieskseries.android.view
 
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth

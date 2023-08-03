@@ -1,4 +1,4 @@
-package com.elbert.kmovieskseries.android.cadastro
+package com.elbert.kmovieskseries.android.view
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.text.KeyboardActions

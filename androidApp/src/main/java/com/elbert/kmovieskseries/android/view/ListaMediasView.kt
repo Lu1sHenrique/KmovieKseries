@@ -1,4 +1,4 @@
-package com.elbert.kmovieskseries.android.lista
+package com.elbert.kmovieskseries.android.view
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
@@ -20,7 +20,6 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
-import com.elbert.kmovieskseries.android.search.SearchView
 import com.elbert.kmovieskseries.presentation.LightPinkHex
 
 @Composable
