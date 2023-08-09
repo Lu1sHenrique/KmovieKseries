@@ -79,7 +79,7 @@ fun NoteListScreen(
                     exit = fadeOut()
                 ) {
                     Text(
-                        text = "All notes",
+                        text = "KMoviesKSeries",
                         fontWeight = FontWeight.Bold,
                         fontSize = 30.sp
                     )
