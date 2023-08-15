@@ -16,17 +16,3 @@ jobs:
       uses: actions/setup-java@v2
       with:
         java-version: 8
-
-    - name: Setup Android SDK
-      uses: android-actions/setup-android@v2
-      with:
-        sdk-version: '31.0.0'  # ajuste para a versão do SDK desejada
-
-    - name: Build APK
-      run: ./gradlew :shared:assemble
-
-    - name: Upload APK
-      uses: actions/upload-artifact@v2
-      with:
-        name: app-release
-        path: ./shared/build/outputs/apk/release/shared-release.apk
