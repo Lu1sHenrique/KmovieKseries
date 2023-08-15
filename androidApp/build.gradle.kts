@@ -9,7 +9,7 @@ android {
     namespace = "com.plcoding.noteappkmm.android"
     compileSdk = 33
     defaultConfig {
-        applicationId = "com.plcoding.noteappkmm.android"
+        applicationId = "com.elbert.kmovieskseries.android"
         minSdk = 21
         targetSdk = 33
         versionCode = 1
