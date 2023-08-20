@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "com.plcoding.noteappkmm.android"
+    namespace = "com.elbert.kmovieskseries.android"
     compileSdk = 33
     defaultConfig {
         applicationId = "com.elbert.kmovieskseries.android"
