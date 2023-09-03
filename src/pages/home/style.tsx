@@ -22,7 +22,9 @@ const styles = StyleSheet.create({
 
     list: {
         marginHorizontal: 10,
-        paddingBottom: 20
+        marginBottom: 20,
+        borderRadius: 20,
+        backgroundColor: colors.white
     },
 
     areaButton: {

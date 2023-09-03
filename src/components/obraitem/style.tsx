@@ -3,7 +3,8 @@ import colors from '../../utils/colors';
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: colors.white
+    backgroundColor: colors.white,
+    borderRadius: 20
   },
 
   containerItems: {
@@ -12,7 +13,9 @@ const styles = StyleSheet.create({
     width: '90%',
     alignSelf: 'center',
     flexDirection: 'row',
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
+    borderBottomWidth: 1,
+    paddingBottom: 10
   },
 
   title: {

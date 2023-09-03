@@ -17,12 +17,12 @@ import colors from '../../utils/colors';
 import api from '../../services/api';
 
 const dataMock = [
-  { idUsuario: 1, titulo: 'Breaking Bad', temporadas: 5, episodios: 200, midia: 'Série', plataforma: 'Netflix' },
-  { idUsuario: 2, titulo: 'Stranger Things', temporadas: 13, episodios: 200, midia: 'Série', plataforma: 'Netflix' },
-  { idUsuario: 3, titulo: 'Game of Thrones', temporadas: 5, episodios: 200, midia: 'Série', plataforma: 'HBO Max' },
-  { idUsuario: 4, titulo: 'Chernobyl', temporadas: 5, episodios: 200, midia: 'Série', plataforma: 'HBO Max' },
-  { idUsuario: 5, titulo: 'React Native Group', temporadas: 5, episodios: 200, midia: 'Série', plataforma: 'Telegram' },
-  { idUsuario: 6, titulo: 'Sample Telegram Channel', temporadas: 5, episodios: 200, midia: 'Série', plataforma: 'Telegram' },
+  { idUsuario: 1, titulo: 'Breaking Bad', temporadas: 5, episodiosPorTemporada: 200, tipo: 'Série', plataforma: 'Netflix' },
+  { idUsuario: 2, titulo: 'Stranger Things', temporadas: 13, episodiosPorTemporada: 200, tipo: 'Série', plataforma: 'Netflix' },
+  { idUsuario: 3, titulo: 'Game of Thrones', temporadas: 5, episodiosPorTemporada: 200, tipo: 'Série', plataforma: 'HBO Max' },
+  { idUsuario: 4, titulo: 'Chernobyl', temporadas: 5, episodiosPorTemporada: 200, tipo: 'Série', plataforma: 'HBO Max' },
+  { idUsuario: 5, titulo: 'React Native Group', temporadas: 5, episodiosPorTemporada: 200, tipo: 'Série', plataforma: 'Telegram' },
+  { idUsuario: 6, titulo: 'Sample Telegram Channel', temporadas: 5, episodiosPorTemporada: 200, tipo: 'Série', plataforma: 'Telegram' },
 ];
 
 
