@@ -62,7 +62,31 @@ const styles = StyleSheet.create({
         marginVertical: 15,
         borderRadius: 30,
         height: 50
-    }
+    },
+
+    containerAlert: {
+        width: "80%",
+        borderRadius: 15
+      },
+    
+      txtTitleAlert: {
+        fontSize: 25,
+        color: colors.black,
+        textAlign: 'center'
+      },
+    
+      buttonAlert: {
+        width: "35%",
+        marginHorizontal: 13,
+        paddingVertical: 15
+      },
+    
+      txtButtonAlert: {
+        fontSize: 20,
+        alignSelf: 'center',
+        color: colors.white,
+        fontFamily: 'BebasNeue-Regular'
+      }
 });
 
 export default styles;
