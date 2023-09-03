@@ -338,7 +338,6 @@ function App(): JSX.Element {
                     hideAlertValidacaoEp();
                 }}
             />
-
         </View>
     );
 }
