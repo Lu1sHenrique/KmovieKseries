@@ -30,7 +30,7 @@ export default function ObraItem(props: { work: Obras }) {
           <Text style={styles.infos}>Episodios: {props.work.episodiosPorTemporada}</Text>
         </View>
 
-        <View style={{justifyContent: 'center', width: 30, borderWidth: 1}}>
+        <View style={{justifyContent: 'center', width: 30}}>
           <Checkbox
             size={25}
             fillColor={colors.black}
