@@ -6,7 +6,8 @@ import {
   View,
   ScrollView,
   TouchableOpacity,
-  ActivityIndicator
+  ActivityIndicator,
+  RefreshControl
 } from 'react-native';
 import ObraItem from '../../components/obraitem';
 import Icon from 'react-native-vector-icons/AntDesign';
@@ -24,11 +25,17 @@ function App(): JSX.Element {
     getSeries()
   }, [])
 
+  const onRefresh = () => {
+    setRefreshing(false);
+    getSeries();
+  }
+
 
   const [searchObra, setSearchObra] = useState('');
   const [series, setSeries] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [showError, setShowError] = useState(false);
+  const [refreshing, setRefreshing] = useState(false)
 
   const getSeries = async () => {
     showError && setShowError(false)
@@ -49,7 +56,9 @@ function App(): JSX.Element {
 
   return (
     <View style={{ backgroundColor: colors.lightRosa, height: '100%' }}>
-      <ScrollView>
+      <ScrollView refreshControl={
+          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} colors={[colors.lightRosa]} />
+      }>
         <View>
           <View style={{ marginVertical: 20 }}>
             <View style={styles.lineInputIcon}>

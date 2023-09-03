@@ -13,6 +13,7 @@ import colors from '../../utils/colors';
 import { useNavigation } from '@react-navigation/native'
 import { Picker } from '@react-native-picker/picker'
 import api from '../../services/api'
+import CadastroObra from './cadastroObra';
 
 const plataformas = [
     { id: 1, nome: 'NetFlix' },
@@ -37,12 +38,65 @@ function App(): JSX.Element {
 
 
     const [titulo, setTitulo] = useState('');
-    const [plataforma, setPlataforma] = useState('');
-    const [temporadas, setTemporadas] = useState(0);
+    const [plataforma, setPlataforma] = useState([]);
+    const [temporadas, setTemporadas] = useState('');
     const [episodiosPorTemporada, setEpisodiosPorTemporada] = useState('');
-    const [tipo, setTipo] = useState('');
+    const [tipo, setTipo] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [showError, setShowError] = useState(false);
+
+
+    const cadastrar = async () => {
+
+        const cadastroObra = new CadastroObra(titulo, plataforma, tipo, temporadas, episodiosPorTemporada);
+
+        if (!titulo.length) {
+            setShowValidacaoCond(true)
+            setShowAlertSuccess(false)
+            setShowAlertConfirm(false)
+        } else
+            if (!plataforma.length) {
+                setShowValidacaoPlac(true)
+                setShowAlertSuccess(false)
+                setShowAlertConfirm(false)
+            } else
+                if (tipo.length < 2) {
+                    setShowKmInicial(true)
+                    setShowAlertSuccess(false)
+                    setShowAlertConfirm(false)
+                } else
+                    if (temporadas.length < 2) {
+                        setShowKmFinal(true)
+                        setShowAlertSuccess(false)
+                        setShowAlertConfirm(false)
+                    } else
+                        if (!episodiosPorTemporada.length) {
+                            setShowValidacaoImageInicial(true)
+                            setShowAlertSuccess(false)
+                            setShowAlertConfirm(false)
+                        } else {
+                            setIsLoadingSend(true)
+                            await api.post('/series', cadastroObra)
+                                .then(function (response) {
+                                    setIsLoadingSend(false)
+                                    console.log(response)
+                                    if (!response.status == 200) {
+                                        setShowErrorSend(true)
+                                        setShowMsgErrorSend("Erro ao enviar: " + response.data.mensagemErro)
+                                    } else {
+                                        setTitulo("")
+                                        setPlataforma([])
+                                        setTipo([])
+                                        setTemporadas("")
+                                        setEpisodiosPorTemporada("")
+                                    }
+                                    setShowAlertConfirm(false)
+                                })
+                                .catch(function (error) {
+                                    console.error(error);
+                                })
+                        }
+    }
 
     return (
         <View style={{ backgroundColor: colors.lightRosa, height: '100%' }}>
@@ -72,7 +126,7 @@ function App(): JSX.Element {
                                 setPlataforma(itemValue)
                             }
                             dropdownIconColor={colors.gray}
-                            style={{marginLeft: 10, color: colors.gray}}
+                            style={{ marginLeft: 10, color: colors.gray }}
                             dropdownIconRippleColor={colors.gray}
                         >
                             <Picker.Item
@@ -88,7 +142,8 @@ function App(): JSX.Element {
                                         label={id.nome.replaceAll('+', ' ')}
                                         value={id.nome}
                                         style={{
-                                            color: colors.gray
+                                            color: colors.gray,
+                                            fontSize:20
                                         }}
                                         key='plataforma'
                                     />
@@ -104,7 +159,7 @@ function App(): JSX.Element {
                             }
                             dropdownIconColor={colors.gray}
                             dropdownIconRippleColor={colors.gray}
-                            style={{marginLeft: 10, color: colors.gray}}
+                            style={{ marginLeft: 10, color: colors.gray }}
                         >
                             <Picker.Item
                                 label='Tipos'
@@ -119,7 +174,8 @@ function App(): JSX.Element {
                                         label={id.nome.replaceAll('+', ' ')}
                                         value={id.nome}
                                         style={{
-                                            color: colors.gray
+                                            color: colors.gray,
+                                            fontSize:20
                                         }}
                                         key='tipo'
                                     />
@@ -145,7 +201,9 @@ function App(): JSX.Element {
                             onChangeText={setEpisodiosPorTemporada}>
                         </TextInput>
                     </View>
-                    <TouchableOpacity style={styles.button}>
+                    <TouchableOpacity
+                        onPress={cadastrar}
+                        style={styles.button}>
                         <Text style={styles.txtButton}>
                             Cadastrar
                         </Text>
