@@ -23,14 +23,14 @@ export default function ObraItem(props: { work: Obras }) {
           />
         </View>
 
-        <View style={{marginLeft: 40}}>
+        <View>
           <Text style={styles.title}>{props.work.titulo.substr(0, 16)}</Text>
           <Text style={styles.infos}>Tipo: {props.work.tipo}</Text>
           <Text style={styles.infos}>Temporadas: {props.work.temporadas}</Text>
           <Text style={styles.infos}>Episodios: {props.work.episodiosPorTemporada}</Text>
         </View>
 
-        <View style={{justifyContent: 'center', width: 30, marginLeft: 50}}>
+        <View style={{justifyContent: 'center', width: 30, borderWidth: 1}}>
           <Checkbox
             size={25}
             fillColor={colors.black}

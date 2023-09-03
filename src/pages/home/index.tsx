@@ -14,7 +14,16 @@ import Icon from 'react-native-vector-icons/AntDesign';
 import { useNavigation } from '@react-navigation/native'
 import styles from './style';
 import colors from '../../utils/colors';
-import api from '../../services/api'
+import api from '../../services/api';
+
+const dataMock = [
+  { idUsuario: 1, titulo: 'Breaking Bad', temporadas: 5, episodios: 200, midia: 'Série', plataforma: 'Netflix' },
+  { idUsuario: 2, titulo: 'Stranger Things', temporadas: 13, episodios: 200, midia: 'Série', plataforma: 'Netflix' },
+  { idUsuario: 3, titulo: 'Game of Thrones', temporadas: 5, episodios: 200, midia: 'Série', plataforma: 'HBO Max' },
+  { idUsuario: 4, titulo: 'Chernobyl', temporadas: 5, episodios: 200, midia: 'Série', plataforma: 'HBO Max' },
+  { idUsuario: 5, titulo: 'React Native Group', temporadas: 5, episodios: 200, midia: 'Série', plataforma: 'Telegram' },
+  { idUsuario: 6, titulo: 'Sample Telegram Channel', temporadas: 5, episodios: 200, midia: 'Série', plataforma: 'Telegram' },
+];
 
 
 function App(): JSX.Element {
@@ -79,7 +88,7 @@ function App(): JSX.Element {
           {isLoading ? <ActivityIndicator style={{ flex: 1, display: 'flex'}} size="large" color={colors.white} /> : (
             <FlatList
               style={styles.list}
-              data={series.filter(val => {
+              data={dataMock.filter(val => {
                 if (searchObra === '') {
                   return val
                 } else if (val.titulo.toLocaleLowerCase()

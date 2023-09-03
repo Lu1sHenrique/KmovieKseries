@@ -11,7 +11,8 @@ const styles = StyleSheet.create({
     marginVertical: 20,
     width: '90%',
     alignSelf: 'center',
-    flexDirection: 'row'
+    flexDirection: 'row',
+    justifyContent: 'space-between'
   },
 
   title: {
