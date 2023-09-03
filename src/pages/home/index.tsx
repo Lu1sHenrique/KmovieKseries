@@ -10,12 +10,15 @@ import {
 } from 'react-native';
 import ObraItem from '../../components/obraitem';
 import Icon from 'react-native-vector-icons/AntDesign';
+import { useNavigation } from '@react-navigation/native'
 import styles from './style';
 import colors from '../../utils/colors';
 import api from '../../services/api'
 
 
 function App(): JSX.Element {
+
+  const navigation = useNavigation();
 
   useEffect(() => {
     getSeries()
@@ -56,7 +59,9 @@ function App(): JSX.Element {
                 style={styles.input}
                 onChangeText={setSearchObra}>
               </TextInput>
-              <TouchableOpacity style={styles.areaButton}>
+              <TouchableOpacity 
+              onPress={() => navigation.navigate('CadastroObra')}
+              style={styles.areaButton}>
                 <Icon name='plus' size={25} color={colors.black} />
               </TouchableOpacity>
             </View>
