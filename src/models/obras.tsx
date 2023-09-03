@@ -1,8 +1,8 @@
 export interface Obras {
-    id: number;
+    idUsuario: number;
     titulo: string;
     temporadas: number;
-    episodios: number;
-    midia: string;
+    episodiosPorTemporada: number;
+    tipo: string;
     plataforma: string;
 }

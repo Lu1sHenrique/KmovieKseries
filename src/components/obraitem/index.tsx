@@ -25,9 +25,9 @@ export default function ObraItem(props: { work: Obras }) {
 
         <View style={{marginLeft: 40}}>
           <Text style={styles.title}>{props.work.titulo.substr(0, 16)}</Text>
-          <Text style={styles.infos}>Tipo de mídia: {props.work.midia}</Text>
+          <Text style={styles.infos}>Tipo: {props.work.tipo}</Text>
           <Text style={styles.infos}>Temporadas: {props.work.temporadas}</Text>
-          <Text style={styles.infos}>Episodios: {props.work.episodios}</Text>
+          <Text style={styles.infos}>Episodios: {props.work.episodiosPorTemporada}</Text>
         </View>
 
         <View style={{justifyContent: 'center', width: 30, marginLeft: 50}}>

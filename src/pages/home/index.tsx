@@ -1,33 +1,51 @@
 import 'react-native-gesture-handler';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   FlatList,
   TextInput,
   View,
   ScrollView,
-  TouchableOpacity
+  TouchableOpacity,
+  ActivityIndicator
 } from 'react-native';
 import ObraItem from '../../components/obraitem';
 import Icon from 'react-native-vector-icons/AntDesign';
 import styles from './style';
 import colors from '../../utils/colors';
+import api from '../../services/api'
 
-
-const data = [
-  { id: 1, titulo: 'Breaking Bad', temporadas: 5, episodios: 200, midia: 'Série', plataforma: 'Netflix' },
-  { id: 2, titulo: 'Stranger Things', temporadas: 13, episodios: 200, midia: 'Série', plataforma: 'Netflix' },
-  { id: 3, titulo: 'Game of Thrones', temporadas: 5, episodios: 200, midia: 'Série', plataforma: 'HBO Max' },
-  { id: 4, titulo: 'Chernobyl', temporadas: 5, episodios: 200, midia: 'Série', plataforma: 'HBO Max' },
-  { id: 5, titulo: 'React Native Group', temporadas: 5, episodios: 200, midia: 'Série', plataforma: 'Telegram' },
-  { id: 6, titulo: 'Sample Telegram Channel', temporadas: 5, episodios: 200, midia: 'Série', plataforma: 'Telegram' },
-];
 
 function App(): JSX.Element {
 
+  useEffect(() => {
+    getSeries()
+  }, [])
+
+
   const [searchObra, setSearchObra] = useState('');
+  const [series, setSeries] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [showError, setShowError] = useState(false);
+
+  const getSeries = async () => {
+    showError && setShowError(false)
+    setIsLoading(true)
+    try {
+      const { data } = await api.get('/series')
+      setIsLoading(false)
+      console.log(data)
+      setSeries(data)
+    } catch (error) {
+      setIsLoading(false)
+      setShowError(true)
+      console.log(error)
+    } finally {
+      setIsLoading(false)
+    }
+  }
 
   return (
-    <View style={{backgroundColor: colors.lightRosa, height: '100%' }}>
+    <View style={{ backgroundColor: colors.lightRosa, height: '100%' }}>
       <ScrollView>
         <View>
           <View style={{ marginVertical: 20 }}>
@@ -44,20 +62,22 @@ function App(): JSX.Element {
             </View>
           </View>
 
-          <FlatList
-            style={styles.list}
-            data={data.filter(val => {
-              if (searchObra === '') {
-                return val
-              } else if (val.titulo.toLocaleLowerCase()
-                .includes(searchObra.toLocaleLowerCase())) {
-                return val
-              }
-            })}
-            keyExtractor={(item) => item.id.toString()}
-            renderItem={({ item }) => <ObraItem work={item} />}
-            showsVerticalScrollIndicator={false}
-          />
+          {isLoading ? <ActivityIndicator style={{ flex: 1, display: 'flex'}} size="large" color={colors.white} /> : (
+            <FlatList
+              style={styles.list}
+              data={series.filter(val => {
+                if (searchObra === '') {
+                  return val
+                } else if (val.titulo.toLocaleLowerCase()
+                  .includes(searchObra.toLocaleLowerCase())) {
+                  return val
+                }
+              })}
+              keyExtractor={(item) => item.idUsuario.toString()}
+              renderItem={({ item }) => <ObraItem work={item} />}
+              showsVerticalScrollIndicator={false}
+            />
+          )}
         </View>
       </ScrollView>
     </View>
