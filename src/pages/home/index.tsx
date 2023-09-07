@@ -15,16 +15,7 @@ import { useNavigation } from '@react-navigation/native'
 import styles from './style';
 import colors from '../../utils/colors';
 import api from '../../services/api';
-
-const dataMock = [
-  { idUsuario: 1, titulo: 'Breaking Bad', temporadas: 5, episodiosPorTemporada: 200, tipo: 'Série', plataforma: 'Netflix', assistido: true },
-  { idUsuario: 2, titulo: 'Stranger Things', temporadas: 13, episodiosPorTemporada: 200, tipo: 'Série', plataforma: 'Netflix', assistido: true },
-  { idUsuario: 3, titulo: 'Game of Thrones', temporadas: 5, episodiosPorTemporada: 200, tipo: 'Série', plataforma: 'HBO Max', assistido: false },
-  { idUsuario: 4, titulo: 'Chernobyl', temporadas: 5, episodiosPorTemporada: 200, tipo: 'Série', plataforma: 'HBO Max', assistido: true },
-  { idUsuario: 5, titulo: 'React Native Group', temporadas: 5, episodiosPorTemporada: 200, tipo: 'Série', plataforma: 'Telegram', assistido: false },
-  { idUsuario: 6, titulo: 'Sample Telegram Channel', temporadas: 5, episodiosPorTemporada: 200, tipo: 'Série', plataforma: 'Telegram', assistido: false },
-];
-
+import { Obras } from '../../models/obras';
 
 function App(): JSX.Element {
 
@@ -39,6 +30,9 @@ function App(): JSX.Element {
     getSeries();
   }
 
+  type GetObrasResponse = {
+    data: Obras[];
+  };
 
   const [searchObra, setSearchObra] = useState('');
   const [series, setSeries] = useState([]);
@@ -46,18 +40,27 @@ function App(): JSX.Element {
   const [showError, setShowError] = useState(false);
   const [refreshing, setRefreshing] = useState(false)
 
-  const getSeries = async () => {
+  async function getSeries() {
     showError && setShowError(false)
     setIsLoading(true)
     try {
-      const {data} = await api.get('/series')
+      const { data, status } = await api.get<GetObrasResponse>(
+        '/series',
+        {
+          headers: {
+            Accept: 'application/json',
+          },
+        },
+      );
       setIsLoading(false)
-      console.log(data)
+      console.log(JSON.stringify(data, null, 4));
+      console.log('response status is: ', status);
       setSeries(data)
+      return data;
     } catch (error) {
       setIsLoading(false)
       setShowError(true)
-      console.log(error)
+      console.log(error);
     } finally {
       setIsLoading(false)
     }
@@ -88,7 +91,7 @@ function App(): JSX.Element {
           {isLoading ? <ActivityIndicator style={{ flex: 1, display: 'flex'}} size="large" color={colors.white} /> : (
             <FlatList
               style={styles.list}
-              data={dataMock.filter(val => {
+              data={series.filter(val => {
                 if (searchObra === '') {
                   return val
                 } else if (val.titulo.toLocaleLowerCase()
@@ -96,7 +99,7 @@ function App(): JSX.Element {
                   return val
                 }
               })}
-              keyExtractor={(item) => item.idUsuario.toString()}
+              keyExtractor={(item) => item}
               renderItem={({ item }) => <ObraItem work={item} />}
               showsVerticalScrollIndicator={false}
             />
