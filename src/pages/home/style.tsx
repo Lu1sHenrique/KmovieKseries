@@ -38,6 +38,12 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center'
     },
+
+    textObraNull: {
+        marginTop: 15,
+        fontSize: 25,
+        fontFamily: font.fontFamily
+    }
 });
 
 export default styles;
