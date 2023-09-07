@@ -15,6 +15,7 @@ import { useNavigation } from '@react-navigation/native'
 import styles from './style';
 import colors from '../../utils/colors';
 import api from '../../services/api';
+import { Obras } from './../../models/obras';
 
 const dataMock = [
   { idUsuario: 1, titulo: 'Breaking Bad', temporadas: 5, episodiosPorTemporada: 200, tipo: 'Série', plataforma: 'Netflix' },
@@ -50,7 +51,7 @@ function App(): JSX.Element {
     showError && setShowError(false)
     setIsLoading(true)
     try {
-      const { data } = await api.get('/series')
+      const {data} = await api.get('/series')
       setIsLoading(false)
       console.log(data)
       setSeries(data)
@@ -88,7 +89,7 @@ function App(): JSX.Element {
           {isLoading ? <ActivityIndicator style={{ flex: 1, display: 'flex'}} size="large" color={colors.white} /> : (
             <FlatList
               style={styles.list}
-              data={dataMock.filter(val => {
+              data={series.filter(val => {
                 if (searchObra === '') {
                   return val
                 } else if (val.titulo.toLocaleLowerCase()
