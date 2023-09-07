@@ -69,6 +69,10 @@ function App(): JSX.Element {
         data: Plataformas[];
     };
 
+    type GetTiposResponse = {
+        data: Tipos[];
+    };
+
     async function getPlataformas() {
         showError && setShowError(false)
         setIsLoading(true)
@@ -99,7 +103,7 @@ function App(): JSX.Element {
         showError && setShowError(false)
         setIsLoading(true)
         try {
-            const { data, status } = await api.get<GetPlataformasResponse>(
+            const { data, status } = await api.get<GetTiposResponse>(
                 '/tipos',
                 {
                     headers: {
