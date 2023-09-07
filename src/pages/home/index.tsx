@@ -99,7 +99,7 @@ function App(): JSX.Element {
                   return val
                 }
               })}
-              keyExtractor={(item) => item}
+              keyExtractor={(item) => item.idUsuario}
               renderItem={({ item }) => <ObraItem work={item} />}
               showsVerticalScrollIndicator={false}
             />
