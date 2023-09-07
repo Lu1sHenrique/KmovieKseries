@@ -42,7 +42,8 @@ const styles = StyleSheet.create({
     textObraNull: {
         marginTop: 15,
         fontSize: 25,
-        fontFamily: font.fontFamily
+        fontFamily: font.fontFamily,
+        color: colors.gray
     }
 });
 
