@@ -89,7 +89,7 @@ function App(): JSX.Element {
           {isLoading ? <ActivityIndicator style={{ flex: 1, display: 'flex'}} size="large" color={colors.white} /> : (
             <FlatList
               style={styles.list}
-              data={series.filter(val => {
+              data={dataMock.filter(val => {
                 if (searchObra === '') {
                   return val
                 } else if (val.titulo.toLocaleLowerCase()

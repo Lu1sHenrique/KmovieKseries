@@ -15,6 +15,7 @@ import { useNavigation } from '@react-navigation/native'
 import { Picker } from '@react-native-picker/picker'
 import api from '../../services/api'
 import CadastroObra from './cadastroObra';
+import font from '../../utils/fonts'
 
 const plataformas = [
     { id: 1, nome: 'NetFlix' },
@@ -138,9 +139,9 @@ function App(): JSX.Element {
                     style={styles.ButtonBack}
                     onPress={() => navigation.goBack()}
                 >
-                    <Icon style={styles.IconBack} name="arrowleft" size={30} />
+                    <Icon style={styles.IconBack} name="arrowleft" size={25} />
                 </TouchableOpacity>
-                <Text style={{ fontSize: 30, color: colors.black }}>Cadastro de Obras</Text>
+                <Text style={{ fontSize: 25, color: colors.black, fontFamily: font.fontFamily }}>Cadastro de Obras</Text>
             </View>
             {isLoading ? <ActivityIndicator style={{ flex: 1, display: 'flex' }} size="large" color={colors.white} /> : (
                 <View>
@@ -159,15 +160,12 @@ function App(): JSX.Element {
                                 setPlataforma(itemValue)
                             }
                             dropdownIconColor={colors.gray}
-                            style={{ marginLeft: 10, color: colors.gray }}
+                            style={styles.titlePicker}
                             dropdownIconRippleColor={colors.gray}
                         >
                             <Picker.Item
                                 label='Plataformas'
-                                style={{
-                                    color: colors.black,
-                                    fontSize: 20
-                                }}
+                                style={styles.labelPicker}
                             />
                             {
                                 plataformas.map(id => {
@@ -192,14 +190,11 @@ function App(): JSX.Element {
                             }
                             dropdownIconColor={colors.gray}
                             dropdownIconRippleColor={colors.gray}
-                            style={{ marginLeft: 10, color: colors.gray }}
+                            style={styles.titlePicker}
                         >
                             <Picker.Item
                                 label='Tipos'
-                                style={{
-                                    color: colors.black,
-                                    fontSize: 20
-                                }}
+                                style={styles.labelPicker}
                             />
                             {
                                 tipos.map(id => {

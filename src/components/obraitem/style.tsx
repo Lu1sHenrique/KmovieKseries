@@ -1,5 +1,6 @@
 import { StyleSheet } from 'react-native';
 import colors from '../../utils/colors';
+import font from '../../utils/fonts'
 
 const styles = StyleSheet.create({
   container: {
@@ -9,7 +10,7 @@ const styles = StyleSheet.create({
 
   containerItems: {
     backgroundColor: colors.white,
-    marginVertical: 20,
+    marginTop: 20,
     width: '90%',
     alignSelf: 'center',
     flexDirection: 'row',
@@ -22,19 +23,15 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
     color: 'black',
-    paddingBottom: 10
-  },
-
-  platform: {
-    fontSize: 14,
-    color: 'black',
-    padding: 10
+    paddingBottom: 10,
+    fontFamily: font.fontFamily
   },
 
   infos: {
     color: colors.black,
     fontSize: 15,
-    fontWeight: '500'
+    fontWeight: '500',
+    fontFamily: font.fontFamily
   }
 })
 

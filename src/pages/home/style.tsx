@@ -1,5 +1,6 @@
 import { StyleSheet } from 'react-native';
 import colors from '../../utils/colors';
+import font from '../../utils/fonts'
 
 
 const styles = StyleSheet.create({
@@ -17,7 +18,8 @@ const styles = StyleSheet.create({
         flex: 1,
         marginStart: 20,
         fontSize: 20,
-        color: colors.gray
+        color: colors.gray,
+        fontFamily: font.fontFamily
     },
 
     list: {

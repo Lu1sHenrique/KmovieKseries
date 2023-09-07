@@ -1,5 +1,6 @@
 import { StyleSheet } from 'react-native';
 import colors from '../../utils/colors';
+import font from '../../utils/fonts'
 
 
 const styles = StyleSheet.create({
@@ -9,7 +10,7 @@ const styles = StyleSheet.create({
         backgroundColor: colors.white,
         height: 50,
         borderRadius: 25,
-        width: '95%',
+        width: '90%',
         alignSelf: 'center',
         marginVertical: 15
     },
@@ -18,7 +19,21 @@ const styles = StyleSheet.create({
         flex: 1,
         marginStart: 20,
         fontSize: 20,
-        color: colors.gray
+        color: colors.gray,
+        fontFamily: font.fontFamily
+    },
+
+    titlePicker:{
+        marginLeft: 10, 
+        color: colors.gray, 
+        marginTop: -5,
+        fontFamily: font.fontFamily
+    },
+
+    labelPicker:{ 
+        color: colors.black,
+        fontSize: 20,
+        fontFamily: font.fontFamily
     },
 
     ContainerButtonBack: {
@@ -41,22 +56,22 @@ const styles = StyleSheet.create({
     button: {
         marginTop: 15,
         alignSelf: 'center',
-        width: '95%',
+        width: '90%',
         height: 50,
         backgroundColor: colors.white,
         justifyContent: 'center',
         alignItems: 'center',
-        borderRadius: 20
+        borderRadius: 30
     },
 
     txtButton: {
         color: colors.gray,
-        fontSize: 25
+        fontSize: 20
     },
 
     picker: {
         backgroundColor: colors.white,
-        width: '95%',
+        width: '90%',
         alignSelf: 'center',
         color: colors.gray,
         marginVertical: 15,
