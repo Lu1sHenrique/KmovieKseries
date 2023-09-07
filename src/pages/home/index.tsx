@@ -12,6 +12,7 @@ import {
 import ObraItem from '../../components/obraitem';
 import Icon from 'react-native-vector-icons/AntDesign';
 import { useNavigation } from '@react-navigation/native'
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import styles from './style';
 import colors from '../../utils/colors';
 import api from '../../services/api';
@@ -34,8 +35,12 @@ function App(): JSX.Element {
     data: Obras[];
   };
 
+  async function saveUserCode(userCode: number) {
+    await AsyncStorage.setItem('user', JSON.stringify(userCode))   
+  }
+
   const [searchObra, setSearchObra] = useState('');
-  const [series, setSeries] = useState([]);
+  const [series, setSeries] = useState<Obras[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [showError, setShowError] = useState(false);
   const [refreshing, setRefreshing] = useState(false)
@@ -56,6 +61,7 @@ function App(): JSX.Element {
       console.log(JSON.stringify(data, null, 4));
       console.log('response status is: ', status);
       setSeries(data)
+      await saveUserCode(data[0].idUsuario)
       return data;
     } catch (error) {
       setIsLoading(false)
@@ -65,6 +71,7 @@ function App(): JSX.Element {
       setIsLoading(false)
     }
   }
+  
 
   return (
     <View style={{ backgroundColor: colors.lightRosa, height: '100%' }}>

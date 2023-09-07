@@ -26,7 +26,7 @@ export default function ObraItem(props: { work: Obras }) {
 
         <View>
           {
-            props.work.titulo.length > 14 ?
+            props.work.titulo.length > 14 || props.work.titulo.length < 10?
             <>
             <Text style={styles.title}>{props.work.titulo.substr(0, 16)}</Text>
             <Text style={styles.infos}>Tipo: {props.work.tipo}</Text>

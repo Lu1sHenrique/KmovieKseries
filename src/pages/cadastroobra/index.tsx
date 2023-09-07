@@ -11,39 +11,42 @@ import Icon from 'react-native-vector-icons/AntDesign';
 import styles from './style';
 import colors from '../../utils/colors';
 import AwesomeAlert from 'react-native-awesome-alerts';
-import { useNavigation } from '@react-navigation/native'
-import { Picker } from '@react-native-picker/picker'
-import api from '../../services/api'
+import { useNavigation } from '@react-navigation/native';
+import { Picker } from '@react-native-picker/picker';
+import api from '../../services/api';
+import font from '../../utils/fonts';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import CadastroObra from './cadastroObra';
-import font from '../../utils/fonts'
-
-const plataformas = [
-    { id: 1, nome: 'NetFlix' },
-    { id: 2, nome: 'Disney Plus' },
-    { id: 3, nome: 'HBO Max' },
-    { id: 4, nome: 'Telegram' },
-    { id: 5, nome: 'Amazon Prime' }
-];
-
-const tipos = [
-    { id: 1, nome: 'Série' },
-    { id: 2, nome: 'Documentário' },
-    { id: 3, nome: 'Anime' },
-    { id: 4, nome: 'Filme' },
-    { id: 5, nome: 'Musical' }
-];
+import { CadastroObras, Plataformas, Tipos } from '../../models/obras';
 
 
 function App(): JSX.Element {
+
+    const [idUsuario, setIdUsuario] = useState(0);
+
+    async function buscarIdUsuario() {
+        const user = await AsyncStorage.getItem('user');
+        setIdUsuario(parseInt(user));
+    }
+
+    type GetCadastroObrasResponse = {
+        data: CadastroObras[];
+    };
+
+    useEffect(() => {
+        buscarIdUsuario();
+        getPlataformas();
+        getTipos();
+    }, []);
 
     const navigation = useNavigation();
 
 
     const [titulo, setTitulo] = useState('');
-    const [plataforma, setPlataforma] = useState([]);
-    const [temporadas, setTemporadas] = useState('');
-    const [episodiosPorTemporada, setEpisodiosPorTemporada] = useState('');
-    const [tipo, setTipo] = useState([]);
+    const [plataforma, setPlataforma] = useState('');
+    const [temporadas, setTemporadas] = useState(0);
+    const [episodiosPorTemporada, setEpisodiosPorTemporada] = useState(0);
+    const [tipo, setTipo] = useState('');
     const [isLoading, setIsLoading] = useState(false);
     const [isLoadingSend, setIsLoadingSend] = useState(false);
     //states alerts
@@ -58,6 +61,65 @@ function App(): JSX.Element {
     const [showValidacaoTipo, setShowValidacaoTipo] = useState(false)
     const [showErrorSend, setShowErrorSend] = useState(false)
     const [showMsgErrorSend, setShowMsgErrorSend] = useState("")
+    const [tipos, setTipos] = useState<Tipos[]>([]);
+    const [plataformas, setPlataformas] = useState<Plataformas[]>([]);
+
+
+    type GetPlataformasResponse = {
+        data: Plataformas[];
+    };
+
+    async function getPlataformas() {
+        showError && setShowError(false)
+        setIsLoading(true)
+        try {
+            const { data, status } = await api.get<GetPlataformasResponse>(
+                '/plataformas',
+                {
+                    headers: {
+                        Accept: 'application/json',
+                    },
+                },
+            );
+            setIsLoading(false)
+            console.log(JSON.stringify(data, null, 4));
+            console.log('response status is: ', status);
+            setPlataformas(data)
+            return data;
+        } catch (error) {
+            setIsLoading(false)
+            setShowError(true)
+            console.log(error);
+        } finally {
+            setIsLoading(false)
+        }
+    }
+
+    async function getTipos() {
+        showError && setShowError(false)
+        setIsLoading(true)
+        try {
+            const { data, status } = await api.get<GetPlataformasResponse>(
+                '/tipos',
+                {
+                    headers: {
+                        Accept: 'application/json',
+                    },
+                },
+            );
+            setIsLoading(false)
+            console.log(JSON.stringify(data, null, 4));
+            console.log('response status is: ', status);
+            setTipos(data)
+            return data;
+        } catch (error) {
+            setIsLoading(false)
+            setShowError(true)
+            console.log(error);
+        } finally {
+            setIsLoading(false)
+        }
+    }
 
     const hideAlertValidacaoTitulo = () => (
         setShowValidacaoTitulo(false)
@@ -79,10 +141,14 @@ function App(): JSX.Element {
         setShowValidacaoEp(false)
     );
 
+    const hideAlertSuccess = () => (
+        setShowAlertSuccess(false)
+    );
+
 
     const cadastrar = async () => {
 
-        const cadastroObra = new CadastroObra(titulo, plataforma, tipo, temporadas, episodiosPorTemporada);
+        const cadastroObra = new CadastroObra(titulo, plataforma, tipo, temporadas, episodiosPorTemporada, idUsuario, false);
 
         if (!titulo.length) {
             setShowValidacaoTitulo(true)
@@ -99,34 +165,32 @@ function App(): JSX.Element {
                     setShowAlertSuccess(false)
                     setShowAlertConfirm(false)
                 } else
-                    if (!temporadas.length) {
+                    if (temporadas == 0) {
                         setShowValidacaoTemp(true)
                         setShowAlertSuccess(false)
                         setShowAlertConfirm(false)
                     } else
-                        if (!episodiosPorTemporada.length) {
+                        if (episodiosPorTemporada == 0) {
                             setShowValidacaoEp(true)
                             setShowAlertSuccess(false)
                             setShowAlertConfirm(false)
                         } else {
                             setIsLoadingSend(true)
-                            await api.post('/series', cadastroObra)
+                            await api.post<GetCadastroObrasResponse>('/series', cadastroObra)
                                 .then(function (response) {
                                     setIsLoadingSend(false)
                                     console.log(response)
-                                    if (!response.status == 200) {
-                                        setShowErrorSend(true)
-                                        setShowMsgErrorSend("Erro ao cadastrar: " + response.data.mensagemErro)
-                                    } else {
-                                        setTitulo("")
-                                        setPlataforma([])
-                                        setTipo([])
-                                        setTemporadas("")
-                                        setEpisodiosPorTemporada("")
-                                    }
+                                    setShowAlertSuccess(true)
+                                    setTitulo("")
+                                    setPlataforma('')
+                                    setTipo('')
+                                    setTemporadas(0)
+                                    setEpisodiosPorTemporada(0)
                                     setShowAlertConfirm(false)
                                 })
                                 .catch(function (error) {
+                                    setShowErrorSend(true)
+                                    setShowMsgErrorSend("Erro ao cadastrar: " + error.message)
                                     console.error(error);
                                 })
                         }
@@ -150,7 +214,8 @@ function App(): JSX.Element {
                             placeholder='Título'
                             placeholderTextColor={colors.gray}
                             style={styles.input}
-                            onChangeText={setTitulo}>
+                            onChangeText={setTitulo}
+                            value={titulo}>
                         </TextInput>
                     </View>
                     <View style={styles.picker}>
@@ -170,8 +235,8 @@ function App(): JSX.Element {
                             {
                                 plataformas.map(id => {
                                     return <Picker.Item
-                                        label={id.nome.replaceAll('+', ' ')}
-                                        value={id.nome}
+                                        label={id.name.replaceAll('+', ' ')}
+                                        value={id.name}
                                         style={{
                                             color: colors.gray,
                                             fontSize: 20
@@ -199,8 +264,8 @@ function App(): JSX.Element {
                             {
                                 tipos.map(id => {
                                     return <Picker.Item
-                                        label={id.nome.replaceAll('+', ' ')}
-                                        value={id.nome}
+                                        label={id.name.replaceAll('+', ' ')}
+                                        value={id.name}
                                         style={{
                                             color: colors.gray,
                                             fontSize: 20
@@ -217,7 +282,8 @@ function App(): JSX.Element {
                             placeholder='Temporadas'
                             placeholderTextColor={colors.gray}
                             style={styles.input}
-                            onChangeText={text => setTemporadas(text)}>
+                            onChangeText={text => setTemporadas(text)}
+                            value={temporadas}>
                         </TextInput>
                     </View>
                     <View style={styles.lineInputIcon}>
@@ -226,7 +292,8 @@ function App(): JSX.Element {
                             placeholder='Episódios por temporada'
                             placeholderTextColor={colors.gray}
                             style={styles.input}
-                            onChangeText={setEpisodiosPorTemporada}>
+                            onChangeText={setEpisodiosPorTemporada}
+                            value={episodiosPorTemporada}>
                         </TextInput>
                     </View>
                     <TouchableOpacity
@@ -238,6 +305,25 @@ function App(): JSX.Element {
                     </TouchableOpacity>
                 </View>
             )}
+
+            <AwesomeAlert
+                contentContainerStyle={styles.containerAlert}
+                confirmButtonStyle={styles.buttonAlert}
+                confirmButtonTextStyle={styles.txtButtonAlert}
+                messageStyle={styles.txtTitleAlert}
+                show={showAlertSuccess}
+                showProgress={false}
+                message="Obra cadastrada com sucesso!😁✅"
+                closeOnTouchOutside={false}
+                closeOnHardwareBackPress={false}
+                showCancelButton={false}
+                showConfirmButton={true}
+                confirmText="Ok"
+                confirmButtonColor={colors.black}
+                onConfirmPressed={() => {
+                    hideAlertSuccess();
+                }}
+            />
 
             <AwesomeAlert
                 contentContainerStyle={styles.containerAlert}
