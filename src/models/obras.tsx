@@ -5,4 +5,5 @@ export interface Obras {
     episodiosPorTemporada: number;
     tipo: string;
     plataforma: string;
+    assistido: boolean;
 }

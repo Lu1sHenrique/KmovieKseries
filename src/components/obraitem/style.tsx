@@ -1,6 +1,8 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
 import colors from '../../utils/colors';
 import font from '../../utils/fonts'
+
+const windowWidth = Dimensions.get('window').width;
 
 const styles = StyleSheet.create({
   container: {
@@ -27,11 +29,35 @@ const styles = StyleSheet.create({
     fontFamily: font.fontFamily
   },
 
+  titleAjuste: {
+    marginLeft: -31,
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: 'black',
+    paddingBottom: 10,
+    fontFamily: font.fontFamily
+  },
+
   infos: {
     color: colors.black,
     fontSize: 15,
-    fontWeight: '500',
+    fontWeight: '700',
     fontFamily: font.fontFamily
+  },
+
+  infosAjuste: {
+    marginLeft: -31,
+    color: colors.black,
+    fontSize: 15,
+    fontWeight: '700',
+    fontFamily: font.fontFamily
+  },
+
+  containerCheck:{ 
+    justifyContent: 'center',
+    alignItems:'flex-end', 
+    width: 30, 
+    marginLeft: windowWidth/7 
   }
 })
 
