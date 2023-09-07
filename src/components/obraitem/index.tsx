@@ -7,7 +7,8 @@ import colors from '../../utils/colors';
 
 export default function ObraItem(props: { work: Obras }) {
 
-  const [assistido, setAssistido] = useState(false);
+
+  const [assistido, setAssistido] = useState(props.work.assistido);
 
   function clickCheckAssistido() {
     setAssistido(!assistido)
@@ -24,18 +25,30 @@ export default function ObraItem(props: { work: Obras }) {
         </View>
 
         <View>
-          <Text style={styles.title}>{props.work.titulo.substr(0, 16)}</Text>
-          <Text style={styles.infos}>Tipo: {props.work.tipo}</Text>
-          <Text style={styles.infos}>Temporadas: {props.work.temporadas}</Text>
-          <Text style={styles.infos}>Episodios: {props.work.episodiosPorTemporada}</Text>
+          {
+            props.work.titulo.length > 14 ?
+            <>
+            <Text style={styles.title}>{props.work.titulo.substr(0, 16)}</Text>
+            <Text style={styles.infos}>Tipo: {props.work.tipo}</Text>
+            <Text style={styles.infos}>Temporadas: {props.work.temporadas}</Text>
+            <Text style={styles.infos}>Episodios: {props.work.episodiosPorTemporada}</Text>
+            </>
+            :
+            <>
+            <Text style={styles.titleAjuste}>{props.work.titulo.substr(0, 16)}</Text>
+            <Text style={styles.infosAjuste}>Tipo: {props.work.tipo}</Text>
+            <Text style={styles.infosAjuste}>Temporadas: {props.work.temporadas}</Text>
+            <Text style={styles.infosAjuste}>Episodios: {props.work.episodiosPorTemporada}</Text>
+            </>
+          }
+          
         </View>
 
-        <View style={{justifyContent: 'center', width: 30}}>
+        <View style={styles.containerCheck}>
           <Checkbox
             size={25}
             fillColor={colors.black}
             textStyle={{
-              textDecorationLine: "none",
               fontSize: 20,
             }}
             isChecked={assistido}
