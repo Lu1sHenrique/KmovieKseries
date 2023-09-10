@@ -25,7 +25,7 @@ function App(): JSX.Element {
   const navigation = useNavigation();
 
   useEffect(() => {
-    getSeries()
+    getSeries();
   }, [])
 
   const onRefresh = () => {
@@ -99,32 +99,32 @@ function App(): JSX.Element {
 
           {
             !series.length ?
-            <View style={{marginTop: 160, alignItems: 'center'}}>
-              <Entypo name="clapperboard" size={70} color={colors.gray} />
-              <Text style={styles.textObraNull}>
-                Nenhuma obra encontrada
-              </Text>
-            </View>
-            :
-            null
+              <View style={{ marginTop: 160, alignItems: 'center' }}>
+                <Entypo name="clapperboard" size={70} color={colors.gray} />
+                <Text style={styles.textObraNull}>
+                  Nenhuma obra encontrada
+                </Text>
+              </View>
+              :
+              null
           }
 
           {isLoading ? <ActivityIndicator style={{ flex: 1, display: 'flex' }} size="large" color={colors.white} /> : (
 
-          <FlatList
-            style={styles.list}
-            data={series.filter(val => {
-              if (searchObra === '') {
-                return val
-              } else if (val.titulo.toLocaleLowerCase()
-                .includes(searchObra.toLocaleLowerCase())) {
-                return val
-              }
-            })}
-            keyExtractor={(item) => item.idUsuario}
-            renderItem={({ item }) => <ObraItem work={item} />}
-            showsVerticalScrollIndicator={false}
-          />
+            <FlatList
+              style={styles.list}
+              data={series.filter(val => {
+                if (searchObra === '') {
+                  return val
+                } else if (val.titulo.toLocaleLowerCase()
+                  .includes(searchObra.toLocaleLowerCase())) {
+                  return val
+                }
+              })}
+              keyExtractor={(item) => item.idUsuario}
+              renderItem={({ item }) => <ObraItem work={item} />}
+              showsVerticalScrollIndicator={false}
+            />
           )}
         </View>
       </ScrollView>

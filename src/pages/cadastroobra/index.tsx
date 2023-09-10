@@ -239,7 +239,7 @@ function App(): JSX.Element {
                             {
                                 plataformas.map(id => {
                                     return <Picker.Item
-                                        label={id.name.replaceAll('+', ' ')}
+                                        label={id.name}
                                         value={id.name}
                                         style={{
                                             color: colors.gray,
@@ -268,7 +268,7 @@ function App(): JSX.Element {
                             {
                                 tipos.map(id => {
                                     return <Picker.Item
-                                        label={id.name.replaceAll('+', ' ')}
+                                        label={id.name}
                                         value={id.name}
                                         style={{
                                             color: colors.gray,
@@ -280,26 +280,37 @@ function App(): JSX.Element {
                             }
                         </Picker>
                     </View>
-                    <View style={styles.lineInputIcon}>
-                        <TextInput
-                            keyboardType='numeric'
-                            placeholder='Temporadas'
-                            placeholderTextColor={colors.gray}
-                            style={styles.input}
-                            onChangeText={text => setTemporadas(text)}
-                            value={temporadas}>
-                        </TextInput>
-                    </View>
-                    <View style={styles.lineInputIcon}>
-                        <TextInput
-                            keyboardType='numeric'
-                            placeholder='Episódios por temporada'
-                            placeholderTextColor={colors.gray}
-                            style={styles.input}
-                            onChangeText={setEpisodiosPorTemporada}
-                            value={episodiosPorTemporada}>
-                        </TextInput>
-                    </View>
+
+                    {
+                        tipo != "Filme" ?
+                            <>
+                                <View style={styles.lineInputIcon}>
+                                    <TextInput
+                                        keyboardType='numeric'
+                                        placeholder='Temporadas'
+                                        placeholderTextColor={colors.gray}
+                                        style={styles.input}
+                                        onChangeText={text => setTemporadas(text)}
+                                        value={temporadas}>
+                                    </TextInput>
+                                </View>
+                                <View style={styles.lineInputIcon}>
+                                    <TextInput
+                                        keyboardType='numeric'
+                                        placeholder='Episódios por temporada'
+                                        placeholderTextColor={colors.gray}
+                                        style={styles.input}
+                                        onChangeText={setEpisodiosPorTemporada}
+                                        value={episodiosPorTemporada}>
+                                    </TextInput>
+                                </View>
+                            </>
+                            :
+                            null
+                    }
+
+
+
                     <TouchableOpacity
                         onPress={cadastrar}
                         style={styles.button}>

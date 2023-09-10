@@ -53,11 +53,35 @@ const styles = StyleSheet.create({
     fontFamily: font.fontFamily
   },
 
-  containerCheck:{ 
+  containerCheck: {
     justifyContent: 'center',
-    alignItems:'flex-end', 
-    width: 30, 
-    marginLeft: windowWidth/7 
+    alignItems: 'flex-end',
+    width: 30,
+    marginLeft: windowWidth / 7
+  },
+
+  containerAlert: {
+    width: "80%",
+    borderRadius: 15
+  },
+
+  txtTitleAlert: {
+    fontSize: 25,
+    color: colors.black,
+    textAlign: 'center'
+  },
+
+  buttonAlert: {
+    width: "35%",
+    marginHorizontal: 13,
+    paddingVertical: 15
+  },
+
+  txtButtonAlert: {
+    fontSize: 20,
+    alignSelf: 'center',
+    color: colors.white,
+    fontFamily: 'BebasNeue-Regular'
   }
 })
 

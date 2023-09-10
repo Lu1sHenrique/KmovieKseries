@@ -1,6 +1,7 @@
 export interface Obras {
     titulo: string;
     plataforma: string;
+    urlLogo: string;
     tipo: string;
     temporadas: number;
     episodiosPorTemporada: number;
