@@ -309,8 +309,6 @@ function App(): JSX.Element {
                             null
                     }
 
-
-
                     <TouchableOpacity
                         onPress={cadastrar}
                         style={styles.button}>
