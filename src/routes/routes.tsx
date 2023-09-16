@@ -3,7 +3,7 @@ import { createStackNavigator } from '@react-navigation/stack'
 
 import Home from '../pages/home/index'
 import CadastroObra from '../pages/cadastroobra/index'
-import colors from '../utils/colors';
+import Usuario from '../pages/usuario/index'
 
 const Stack = createStackNavigator();
 
@@ -13,6 +13,11 @@ const Routes: React.FC = () => (
             headerShown: false
         }}
     >
+
+        <Stack.Screen
+            name='Usuario'
+            component={Usuario}
+        />
 
         <Stack.Screen
             name='Home'

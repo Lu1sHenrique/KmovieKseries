@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
     labelPicker:{ 
         color: colors.black,
         fontSize: 20,
-        fontFamily: font.fontFamily,
+        fontFamily: font.fontFamily
     },
 
     ContainerButtonBack: {

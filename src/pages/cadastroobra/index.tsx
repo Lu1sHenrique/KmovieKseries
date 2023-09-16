@@ -243,7 +243,8 @@ function App(): JSX.Element {
                                         value={id.name}
                                         style={{
                                             color: colors.gray,
-                                            fontSize: 20
+                                            fontSize: 20,
+                                            backgroundColor: colors.white
                                         }}
                                         key='plataforma'
                                     />
@@ -272,7 +273,8 @@ function App(): JSX.Element {
                                         value={id.name}
                                         style={{
                                             color: colors.gray,
-                                            fontSize: 20
+                                            fontSize: 20,
+                                            backgroundColor: colors.white
                                         }}
                                         key='tipo'
                                     />
