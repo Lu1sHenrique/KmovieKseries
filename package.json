@@ -4,6 +4,9 @@
   "private": true,
   "scripts": {
     "android": "react-native run-android",
+    "android-dev": "react-native run-android .env.desenvolvimento",
+    "android-hom": "react-native run-android .env.homologacao",
+    "android-prod": "react-native run-android .env.producao",
     "ios": "react-native run-ios",
     "lint": "eslint .",
     "start": "react-native start",
