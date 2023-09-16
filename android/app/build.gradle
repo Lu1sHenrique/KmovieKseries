@@ -1,7 +1,6 @@
 project.ext.envConfigFiles = [ 
-  prod: ".env.producao", 
-  dev: ".env.desenvolvimento",
-  hom: ".env.homologacao", 
+  release: ".env.homologacao", 
+  debug: ".env.desenvolvimento",
 ];
 
 apply plugin: "com.android.application"
