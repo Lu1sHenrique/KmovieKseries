@@ -1,10 +1,10 @@
 import axios from 'axios';
-//import Config from "react-native-config";
+import Config from "react-native-config";
 
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 
 const api = axios.create({
-    baseURL: 'https://kmovieskseries-hom-c7d011b04fcd.herokuapp.com'
+    baseURL: Config.URL_BASE
 });
 
 export default api;
