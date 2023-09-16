@@ -16,7 +16,7 @@ import { Picker } from '@react-native-picker/picker';
 import api from '../../services/api';
 import font from '../../utils/fonts';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import CadastroObra from './cadastroObra';
+import CadastroObra from '../../models/cadastroObra';
 import { CadastroObras, Plataformas, Tipos } from '../../models/obras';
 
 
