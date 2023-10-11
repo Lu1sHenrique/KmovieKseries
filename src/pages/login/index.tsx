@@ -53,7 +53,6 @@ function App(): JSX.Element {
     if (!user.length) {
       setShowValidacaoUser(true);
       setShowAlertSuccess(false);
-      setShowAlertConfirm(false);
     } else {
       setIsLoadingSend(true);
       const {data} = await api
@@ -63,7 +62,6 @@ function App(): JSX.Element {
           console.log(response);
           setShowAlertSuccess(false);
           setUser('');
-          setShowAlertConfirm(false);
           navigation.navigate('Home');
         });
       await saveUserCode(data).catch(function (error) {
