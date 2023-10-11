@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   ActivityIndicator,
   Image,
+  Alert
 } from 'react-native';
 import Icon from 'react-native-vector-icons/AntDesign';
 import IconFeather from 'react-native-vector-icons/Feather';
@@ -46,6 +47,10 @@ function App(): JSX.Element {
 
   const hideAlertValidacaoPass = () => setShowValidacaoUser(false);
 
+  function loginExtra(){
+    Alert.alert("BORA QUERER?")
+  }
+
   async function login() {
     const cadastroUsuario = new CadastroUsuario(user);
 
@@ -77,7 +82,7 @@ function App(): JSX.Element {
         <View style={styles.containerTitleK}>
           <Text style={styles.titleK}>K</Text>
         </View>
-        <View style={{flexDirection: 'column'}}>
+        <View style={{flexDirection: 'column', marginTop: 5}}>
           <Text style={styles.titleMovies}>movies</Text>
           <Text style={styles.titleSeries}>series</Text>
         </View>
@@ -113,7 +118,7 @@ function App(): JSX.Element {
         </View>
       </View>
 
-      <TouchableOpacity onPress={login} style={styles.buttonLoginExtras}>
+      <TouchableOpacity onPress={loginExtra} style={styles.buttonLoginExtras}>
         <Image
           source={require('../../assets/images/logo_f.png')}
           style={styles.image}
@@ -121,7 +126,7 @@ function App(): JSX.Element {
         <Text style={styles.txtButton}>Acessar com Facebook</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity onPress={login} style={styles.buttonLoginExtras}>
+      <TouchableOpacity onPress={loginExtra} style={styles.buttonLoginExtras}>
         <Image
           source={require('../../assets/images/logo_g.png')}
           style={styles.image}
