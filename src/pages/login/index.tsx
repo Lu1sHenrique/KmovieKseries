@@ -9,8 +9,7 @@ import {
   Image,
   Alert
 } from 'react-native';
-import Icon from 'react-native-vector-icons/AntDesign';
-import IconFeather from 'react-native-vector-icons/Feather';
+import Icon from 'react-native-vector-icons/Feather';
 import styles from './style';
 import colors from '../../utils/colors';
 import AwesomeAlert from 'react-native-awesome-alerts';
@@ -110,9 +109,9 @@ function App(): JSX.Element {
             style={styles.iconHidePass}
             onPress={() => setHidePass(!hidePass)}>
             {hidePass ? (
-              <IconFeather name="eye" size={23} color={colors.white} />
+              <Icon name="eye" size={23} color={colors.white} />
             ) : (
-              <IconFeather name="eye-off" size={23} color={colors.white} />
+              <Icon name="eye-off" size={23} color={colors.white} />
             )}
           </TouchableOpacity>
         </View>
