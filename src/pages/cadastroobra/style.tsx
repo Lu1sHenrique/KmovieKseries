@@ -66,7 +66,8 @@ const styles = StyleSheet.create({
 
     txtButton: {
         color: colors.gray,
-        fontSize: 20
+        fontSize: 20,
+        fontFamily: font.fontFamily
     },
 
     picker: {
