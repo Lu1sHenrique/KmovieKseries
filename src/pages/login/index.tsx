@@ -33,11 +33,10 @@ function App(): JSX.Element {
   const navigation = useNavigation();
 
   const [isLoading, setIsLoading] = useState(false);
-  const [isLoadingSend, setIsLoadingSend] = useState(false);
   //states alerts
   const [showError, setShowError] = useState(false);
-  const [showAlertSuccess, setShowAlertSuccess] = useState(false);
   const [showValidacaoUser, setShowValidacaoUser] = useState(false);
+  const [showValidacaoPass, setShowValidacaoPass] = useState(false);
   const [showErroConec, setShowErroConec] = useState(false);
   const [showErrorSend, setShowErrorSend] = useState(false);
   const [showMsgErrorSend, setShowMsgErrorSend] = useState('');
@@ -45,22 +44,22 @@ function App(): JSX.Element {
 
   const hideAlertValidacaoUser = () => setShowValidacaoUser(false);
 
-  const hideAlertSuccess = () => setShowAlertSuccess(false);
+  const hideAlertValidacaoPass = () => setShowValidacaoUser(false);
 
   async function login() {
     const cadastroUsuario = new CadastroUsuario(user);
 
     if (!user.length) {
       setShowValidacaoUser(true);
-      setShowAlertSuccess(false);
+    } else if (!password.length) {
+      setShowValidacaoUser(true);
     } else {
-      setIsLoadingSend(true);
+      setIsLoading(true);
       const {data} = await api
         .post<GetCadastroUsuarioResponse>('/usuario', cadastroUsuario)
         .then(function (response) {
-          setIsLoadingSend(false);
+          setIsLoading(false);
           console.log(response);
-          setShowAlertSuccess(false);
           setUser('');
           navigation.navigate('Home');
         });
@@ -131,27 +130,16 @@ function App(): JSX.Element {
       </TouchableOpacity>
 
       <TouchableOpacity onPress={login} style={styles.button}>
-        <Text style={styles.txtButton}>Avançar</Text>
+        {isLoading ? (
+          <ActivityIndicator
+            style={{flex: 1, display: 'flex', paddingVertical: 10}}
+            size="large"
+            color={'#fff'}
+          />
+        ) : (
+          <Text style={styles.txtButton}>Avançar</Text>
+        )}
       </TouchableOpacity>
-
-      <AwesomeAlert
-        contentContainerStyle={styles.containerAlert}
-        confirmButtonStyle={styles.buttonAlert}
-        confirmButtonTextStyle={styles.txtButtonAlert}
-        messageStyle={styles.txtTitleAlert}
-        show={showAlertSuccess}
-        showProgress={false}
-        message="Usuário cadastrado com sucesso!😁✅"
-        closeOnTouchOutside={false}
-        closeOnHardwareBackPress={false}
-        showCancelButton={false}
-        showConfirmButton={true}
-        confirmText="Ok"
-        confirmButtonColor={colors.black}
-        onConfirmPressed={() => {
-          hideAlertSuccess();
-        }}
-      />
 
       <AwesomeAlert
         contentContainerStyle={styles.containerAlert}
@@ -169,6 +157,25 @@ function App(): JSX.Element {
         confirmButtonColor={colors.black}
         onConfirmPressed={() => {
           hideAlertValidacaoUser();
+        }}
+      />
+
+      <AwesomeAlert
+        contentContainerStyle={styles.containerAlert}
+        confirmButtonStyle={styles.buttonAlert}
+        confirmButtonTextStyle={styles.txtButtonAlert}
+        messageStyle={styles.txtTitleAlert}
+        show={showValidacaoUser}
+        showProgress={false}
+        message="⚠️Digite uma senha"
+        closeOnTouchOutside={false}
+        closeOnHardwareBackPress={false}
+        showCancelButton={false}
+        showConfirmButton={true}
+        confirmText="Ok"
+        confirmButtonColor={colors.black}
+        onConfirmPressed={() => {
+          hideAlertValidacaoPass();
         }}
       />
     </View>
