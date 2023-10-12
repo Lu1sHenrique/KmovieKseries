@@ -56,7 +56,7 @@ function App(): JSX.Element {
     if (!user.length) {
       setShowValidacaoUser(true);
     } else if (!password.length) {
-      setShowValidacaoUser(true);
+      setShowValidacaoPass(true);
     } else {
       setIsLoading(true);
       const {data} = await api
@@ -169,7 +169,7 @@ function App(): JSX.Element {
         confirmButtonStyle={styles.buttonAlert}
         confirmButtonTextStyle={styles.txtButtonAlert}
         messageStyle={styles.txtTitleAlert}
-        show={showValidacaoUser}
+        show={showValidacaoPass}
         showProgress={false}
         message="⚠️Digite uma senha"
         closeOnTouchOutside={false}

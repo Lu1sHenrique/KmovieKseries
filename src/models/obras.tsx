@@ -28,6 +28,7 @@ interface Usuario {
 export interface Plataformas {
     id: number;
     name: string;
+    urlLogo: string
 }
 
 export interface Tipos {

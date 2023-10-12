@@ -1,15 +1,15 @@
 export default class CadastroObra {
     titulo: string;
-    plataforma: string;
-    tipo: string;
+    streaming: number;
+    tipo: number;
     temporadas: number;
     episodiosPorTemporada: number;
     idUsuario: number;
     assistido: boolean;
 
-    constructor(titulo: string, plataforma: string, tipo: string, temporadas: number, episodiosPorTemporada: number, idUsuario: number, assistido: boolean) {
+    constructor(titulo: string, streaming: number, tipo: number, temporadas: number, episodiosPorTemporada: number, idUsuario: number, assistido: boolean) {
       this.titulo = titulo;
-      this.plataforma = plataforma;
+      this.streaming = streaming;
       this.tipo = tipo;
       this.temporadas = temporadas;
       this.episodiosPorTemporada = episodiosPorTemporada;
