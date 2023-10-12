@@ -7,7 +7,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: colors.white,
-    height: 50,
+    height: 60,
     borderRadius: 15,
     width: '90%',
     alignSelf: 'center',
@@ -39,7 +39,8 @@ const styles = StyleSheet.create({
   },
 
   labelPicker: {
-    color: colors.white,
+    color: colors.black,
+    backgroundColor: colors.white,
     fontSize: 20,
     fontFamily: font.fontFamily,
   },
