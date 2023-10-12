@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
   },
 
   labelPicker: {
-    color: colors.black,
+    color: colors.white,
     fontSize: 20,
     fontFamily: font.fontFamily,
   },
