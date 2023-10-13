@@ -15,10 +15,6 @@ export default function ObraItem(props: { work: Obras }) {
   const [showErrorSend, setShowErrorSend] = useState(false)
   const [showMsgErrorSend, setShowMsgErrorSend] = useState("")
 
-  function clickCheckAssistido() {
-    setAssistido(!assistido)
-  }
-
   const hideAlertSuccess = () => (
     setShowAlertSuccess(false)
   );
