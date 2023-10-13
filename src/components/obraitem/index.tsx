@@ -29,7 +29,7 @@ export default function ObraItem(props: { work: Obras }) {
 
   const checkAssistido = async () => {
     setAssistido(!assistido)
-    await api.put<GetCheckAssistido>('/series/' + !assistido + '/'+ props.work.titulo)
+    await api.put<GetCheckAssistido>('/series/' + !assistido + '/'+ props.work.titulo + '/' + props.work.idTipo)
       .then(function (response: string) {
         setShowAlertSuccess(true)
         console.log(response)

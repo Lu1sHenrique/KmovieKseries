@@ -1,12 +1,14 @@
 export interface Obras {
     titulo: string;
-    plataforma: string;
-    urlLogo: string;
+    plataforma: number;
+    nomePlataforma: string;
+    idTipo: number
     tipo: string;
     temporadas: number;
     episodiosPorTemporada: number;
     idUsuario: number;
     assistido: boolean;
+    urlLogo: string;
 }
 
 export interface CadastroObras {
