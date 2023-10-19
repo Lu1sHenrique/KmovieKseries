@@ -8,6 +8,7 @@ import api from '../../services/api';
 import Swipeable from 'react-native-gesture-handler/Swipeable';
 import IconFA from 'react-native-vector-icons/FontAwesome';
 import AwesomeAlert from 'react-native-awesome-alerts';
+import { useNavigation } from '@react-navigation/native'
 
 interface Props {
   work?: Obras, 
@@ -15,9 +16,12 @@ interface Props {
 } 
 
 export default function ObraItem({work, onRefresh}: Props) {
+
+  const navigation = useNavigation();
+
   const swipeableRef = useRef(null);
 
-  const [assistido, setAssistido] = useState(work.assistido);
+  const [assistido, setAssistido] = useState(work?.assistido);
   const [showAlertSuccess, setShowAlertSuccess] = useState(false);
   const [showErrorSend, setShowErrorSend] = useState(false);
   const [showMsgErrorSend, setShowMsgErrorSend] = useState('');
@@ -52,9 +56,9 @@ export default function ObraItem({work, onRefresh}: Props) {
   }
 
   function alterarCheckList() {
-    //navigation.jumpTo('Combustão', { data });
-    console.log('alterar');
-    onRefresh()
+    console.log(work)
+    swipeableRef.current.close();
+    navigation.navigate('CadastroObra', props={work});
   }
 
   const checkAssistido = async () => {
@@ -82,7 +86,7 @@ export default function ObraItem({work, onRefresh}: Props) {
   const excluirObra = async () => {
     setIsLoadingSend(true);
     await api
-      .delete<void>('/series/' + work.titulo + '/' + work.idTipo)
+      .delete<void>('/series/' + work?.titulo + '/' + work?.idTipo)
       .then(function (response: void) {
         console.log(response);
       })
@@ -107,19 +111,19 @@ export default function ObraItem({work, onRefresh}: Props) {
         <View style={styles.containerItems}>
           <View>
             <Image
-              source={{uri: work.urlLogo}}
+              source={{uri: work?.urlLogo}}
               style={{width: 60, height: 60, borderRadius: 10}}
             />
           </View>
 
           <View>
-            <Text style={styles.title}>{work.titulo.substr(0, 16)}</Text>
-            <Text style={styles.infos}>Tipo: {work.tipo}</Text>
+            <Text style={styles.title}>{work?.titulo.substr(0, 16)}</Text>
+            <Text style={styles.infos}>Tipo: {work?.tipo}</Text>
             <Text style={styles.infos}>
-              Temporadas: {work.temporadas}
+              Temporadas: {work?.temporadas}
             </Text>
             <Text style={styles.infos}>
-              Episodios: {work.episodiosPorTemporada}
+              Episodios: {work?.episodiosPorTemporada}
             </Text>
           </View>
 

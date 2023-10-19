@@ -19,7 +19,12 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import CadastroObra from '../../models/cadastroObra';
 import {CadastroObras, Plataformas, Tipos} from '../../models/obras';
 
-function App(): JSX.Element {
+
+interface Props {
+  props: CadastroObras
+} 
+
+export default function Cadastro({props}) {
   const [idUsuario, setIdUsuario] = useState(0);
 
   async function buscarIdUsuario() {
@@ -35,7 +40,10 @@ function App(): JSX.Element {
     buscarIdUsuario();
     getPlataformas();
     getTipos();
+    teste();
   }, []);
+
+  const teste = () => console.log(props?.plataforma);
 
   const navigation = useNavigation();
 
@@ -442,5 +450,3 @@ function App(): JSX.Element {
     </View>
   );
 }
-
-export default App;
