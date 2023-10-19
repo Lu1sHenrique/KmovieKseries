@@ -79,7 +79,7 @@ function App(): JSX.Element {
           <View style={{ marginVertical: 20 }}>
             <View style={styles.lineInputIcon}>
               <TextInput
-                placeholder='Search'
+                placeholder='Pesquisar'
                 placeholderTextColor={colors.gray}
                 style={styles.input}
                 onChangeText={setSearchObra}>
