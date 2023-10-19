@@ -16,21 +16,12 @@ const styles = StyleSheet.create({
     width: '90%',
     alignSelf: 'center',
     flexDirection: 'row',
-    justifyContent: 'space-between',
     borderBottomWidth: 1,
     paddingBottom: 10
   },
 
   title: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    color: 'black',
-    paddingBottom: 10,
-    fontFamily: font.fontFamily
-  },
-
-  titleAjuste: {
-    marginLeft: -31,
+    marginLeft: 25,
     fontSize: 18,
     fontWeight: 'bold',
     color: 'black',
@@ -39,25 +30,44 @@ const styles = StyleSheet.create({
   },
 
   infos: {
+    marginLeft: 25,
     color: colors.black,
     fontSize: 15,
     fontWeight: '700',
     fontFamily: font.fontFamily
   },
 
-  infosAjuste: {
-    marginLeft: -31,
-    color: colors.black,
-    fontSize: 15,
-    fontWeight: '700',
-    fontFamily: font.fontFamily
+  containerLeftAction:{
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: 125,
+    width: 60,
+    backgroundColor: colors.white,
+    borderTopLeftRadius: 20,
+    borderBottomLeftRadius: 20
+  },
+
+  containerRightAction:{
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: 125,
+    width: 75,
+    backgroundColor: colors.white,
+    borderTopRightRadius: 20,
+    borderBottomRightRadius: 20
+  },
+
+  iconAction:{
+    color: colors.gray
   },
 
   containerCheck: {
+    flex: 1,
     justifyContent: 'center',
     alignItems: 'flex-end',
-    width: 30,
-    marginLeft: windowWidth / 7
+    width: 30
   },
 
   containerAlert: {
