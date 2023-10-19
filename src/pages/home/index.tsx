@@ -117,7 +117,7 @@ function App(): JSX.Element {
                 }
               })}
               keyExtractor={(item) => item.idUsuario}
-              renderItem={({ item }) => <ObraItem work={item} />}
+              renderItem={({ item }) => <ObraItem work={item} onRefresh={() => onRefresh()}/>}
               showsVerticalScrollIndicator={false}
             />
           )}
